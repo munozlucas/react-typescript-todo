@@ -1,17 +1,21 @@
-import React from "react";
+import React from 'react'
 
 type TodoListProps = {
-  items: { id: string; text: string }[];
-};
+  items: { id: string; text: string }[]
+  onDeleteTodo: (id: string) => void
+}
 
-const TodoList: React.FC<TodoListProps> = ({ items }) => {
+const TodoList: React.FC<TodoListProps> = ({ items, onDeleteTodo }) => {
   return (
     <ul>
       {items.map((item) => (
-        <li key={item.id}>{item.text}</li>
+        <li key={item.id}>
+          <span>{item.text}</span>
+          <button onClick={() => onDeleteTodo(item.id)}>DELETE</button>
+        </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default TodoList;
+export default TodoList

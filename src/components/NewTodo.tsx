@@ -1,12 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react'
 
-const NewTodo: React.FC = () => {
-  const textInputRef = useRef<HTMLInputElement>(null);
+type NewTodoProps = {
+  onAddTodo: (todoText: string) => void
+}
+
+const NewTodo: React.FC<NewTodoProps> = ({ onAddTodo }) => {
+  const textInputRef = useRef<HTMLInputElement>(null)
   const todoSubmitHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-    const enteredText = textInputRef.current!.value;
-    console.log(enteredText)
-  };
+    event.preventDefault()
+    const enteredText = textInputRef.current!.value
+    onAddTodo(enteredText)
+  }
 
   return (
     <form onSubmit={todoSubmitHandler}>
@@ -16,7 +20,7 @@ const NewTodo: React.FC = () => {
       </div>
       <button type="submit">ADD TODO</button>
     </form>
-  );
-};
+  )
+}
 
-export default NewTodo;
+export default NewTodo
